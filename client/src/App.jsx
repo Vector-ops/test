@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="box">
-      <h1>Test Login Modal</h1>
+      <h1>Login Test Modal</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
@@ -38,7 +38,11 @@ function App() {
         />
         <button type="submit">Submit</button>
       </form>
-      <a href={`${import.meta.env.VITE_APP_CLIENT_URL}?employeeId=${id}`}>
+      <a
+        href={`${import.meta.env.VITE_APP_CLIENT_URL}?employeeId=${id}`}
+        target="_blank"
+        rel="noreferrer"
+      >
         Redirect
       </a>
     </div>
