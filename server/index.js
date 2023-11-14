@@ -4,6 +4,9 @@ const app = express();
 const port = 8000; // You can change this port number if needed
 require("dotenv").config();
 
+const cors = require("cors");
+app.use(cors());
+
 app.post("/login", async (req, res) => {
 	try {
 		const { employeeId, fullName } = req.body;
