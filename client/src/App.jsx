@@ -5,7 +5,7 @@ function App() {
 	const [id, setId] = useState("");
 	const [name, setName] = useState("");
 
-	function handleSubmit(e) {
+	async function handleSubmit(e) {
 		e.preventDefault();
 		// fetch(`${import.meta.env.VITE_APP_SERVER_URL}/login`, {
 		// 	method: "POST",
@@ -18,12 +18,15 @@ function App() {
 		// 	},
 		// });
 
-		console.log({ firstName: name, employeeId: id });
+		const response = await axios.post(
+			`${import.meta.env.VITE_APP_SERVER_URL}/login`,
+			{
+				fullName: name,
+				employeeId: id,
+			}
+		);
 
-		axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/login`, {
-			fullName: name,
-			employeeId: id,
-		});
+		console.log(response);
 	}
 
 	return (

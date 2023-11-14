@@ -20,6 +20,8 @@ app.post("/login", async (req, res) => {
 			}
 		);
 
+		console.log(response);
+
 		res.status(200).json({ data: response.data });
 	} catch (error) {
 		console.error(error);
