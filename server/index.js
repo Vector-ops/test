@@ -6,6 +6,7 @@ require("dotenv").config();
 
 const cors = require("cors");
 app.use(cors());
+app.use(express.json());
 
 app.post("/login", async (req, res) => {
 	try {
@@ -21,6 +22,7 @@ app.post("/login", async (req, res) => {
 
 		res.status(200).json({ data: response.data });
 	} catch (error) {
+		console.error(error);
 		res.status(400).json({ error: error.message });
 	}
 });
