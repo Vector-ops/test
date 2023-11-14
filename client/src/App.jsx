@@ -6,7 +6,7 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`${import.meta.env.VITE_APP_SERVER_URL}/auth/login`, {
+    fetch(`${import.meta.env.VITE_APP_SERVER_URL}/login`, {
       method: "POST",
       body: JSON.stringify({
         fullName: name,
