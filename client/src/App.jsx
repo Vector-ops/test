@@ -4,31 +4,39 @@ import { useState } from "react";
 function App() {
 	const [id, setId] = useState("");
 	const [name, setName] = useState("");
-	const [response, setResponse] = useState(null);
+	const [responseData, setResponse] = useState(null);
 
-	async function handleSubmit(e) {
+	function handleSubmit(e) {
 		e.preventDefault();
 		console.log({ firstName: name, employeeId: id });
 
-		axios
-			.post(`${import.meta.env.VITE_APP_SERVER_URL}/login`, {
+		try {
+			axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/login`, {
 				fullName: name,
 				employeeId: id,
-			})
-			.then((response) => {
-				setResponse(response);
-				if (!response.ok) {
-					throw new Error(
-						"Network response was not ok: " + response.statusText
-					);
-				}
-			})
-			.catch((error) => {
-				console.error(
-					"There was a problem with the fetch operation:",
-					error
-				);
 			});
+
+			setResponse("Receieved Data");
+		} catch (error) {
+			console.error(
+				"There was a problem with the fetch operation:",
+				error
+			);
+		}
+	}
+
+	function handleLogout() {
+		try {
+			axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/auth/logout`, {
+				employeeId: id,
+			});
+			setResponse("Logged Out");
+		} catch (error) {
+			console.error(
+				"There was a problem with the logout operation:",
+				error
+			);
+		}
 	}
 
 	return (
@@ -50,15 +58,18 @@ function App() {
 					required
 				/>
 				<button type="submit">Submit</button>
+				<button onSubmit={handleLogout}>Logout</button>
 			</form>
 			<a
-				href={`http://localhost:5173?employeeId=${id}`}
+				href={`${
+					import.meta.env.VITE_APP_CLIENT_URL
+				}/auth/?employeeId=${id}`}
 				target="_blank"
 				rel="noreferrer"
 			>
 				Redirect
 			</a>
-			<p>{response}</p>
+			<p>Response: {responseData}</p>
 		</div>
 	);
 }
