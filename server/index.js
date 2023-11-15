@@ -22,7 +22,7 @@ app.post("/login", async (req, res) => {
 
 		console.log(response);
 
-		res.status(200).json({ data: response.data });
+		res.status(200).json("Recieved");
 	} catch (error) {
 		console.error(error);
 		res.status(400).json({ error: error.message });
