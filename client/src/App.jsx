@@ -24,9 +24,10 @@ function App() {
 
   function handleLogout() {
     try {
-      axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/auth/logout`, {
+      axios.post(`http://localhost:3000/auth/logout`, {
         employeeId: id,
       });
+      console.log("Logged out");
       setResponse("Logged Out");
     } catch (error) {
       console.error("There was a problem with the logout operation:", error);
@@ -52,7 +53,7 @@ function App() {
           required
         />
         <button type="submit">Submit</button>
-        <button onSubmit={handleLogout}>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
       </form>
       <a
         href={`${import.meta.env.VITE_APP_CLIENT_URL}/auth/?employeeId=${id}`}
