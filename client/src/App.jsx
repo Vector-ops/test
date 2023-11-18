@@ -59,7 +59,9 @@ function App() {
 					required
 				/>
 				<button type="submit">Submit</button>
-				<button onClick={handleLogout}>Logout</button>
+				<button onClick={handleLogout} type="button">
+					Logout
+				</button>
 			</form>
 			<a
 				href={`${
